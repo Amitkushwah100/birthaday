@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Happy Birthday, Pranssi 🎆🎂</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        :root {
+            --bg-dark: #050212;
+            --bg-mid: #1a1031;
+            --accent-pink: #ff7ac4;
+            --accent-gold: #ffd86b;
+            --accent-cyan: #7af2ff;
+            --glass: rgba(8, 5, 25, 0.8);
+            --border-glass: rgba(255, 255, 255, 0.18);
+            --text-main: #fdf9ff;
+            --shadow-deep: 0 28px 70px rgba(0, 0, 0, 0.9);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Poppins",
+                "Segoe UI", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top, rgba(255, 255, 255, 0.05), transparent 55%),
+                radial-gradient(circle at 20% 80%, rgba(255, 122, 196, 0.14), transparent 65%),
+                radial-gradient(circle at 80% 90%, rgba(122, 242, 255, 0.12), transparent 65%),
+                linear-gradient(135deg, #050212, #100727, #1e0e3e);
+            color: var(--text-main);
+            overflow: hidden;
+        }
+
+        canvas#fireworks {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .stars {
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.6) 0, transparent 40%),
+                radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.5) 0, transparent 45%),
+                radial-gradient(circle at 30% 80%, rgba(255, 255, 255, 0.5) 0, transparent 40%);
+            mix-blend-mode: screen;
+            opacity: 0.35;
+            filter: blur(0.7px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .fairy-lights {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 140%;
+            height: 140px;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0, transparent 55%);
+            background-size: 120px 40px;
+            background-repeat: repeat-x;
+            background-position: 0 40px;
+            opacity: 0.23;
+            filter: blur(0.6px);
+            animation: lightsMove 13s linear infinite;
+            transform: translateX(-10%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes lightsMove {
+            from {
+                background-position-x: 0;
+            }
+
+            to {
+                background-position-x: 240px;
+            }
+        }
+
+        /* main {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 14px 40px;
+    } */
+        main {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            /* 🔥 center se hata ke top ki taraf fix */
+            justify-content: center;
+            padding: 40px 14px 40px;
+            /* thoda upar se space */
+        }
+
+
+        .shell {
+            max-width: 1080px;
+            width: 100%;
+            border-radius: 30px;
+            padding: 22px;
+            backdrop-filter: blur(22px);
+            background:
+                radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(255, 122, 196, 0.14), transparent 55%),
+                var(--glass);
+            border: 1px solid var(--border-glass);
+            box-shadow: var(--shadow-deep);
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+            gap: 24px;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1200px;
+        }
+
+        @media (max-width: 840px) {
+            .shell {
+                grid-template-columns: 1fr;
+                padding: 20px 16px;
+            }
+        }
+
+        .shell::before {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            background: radial-gradient(circle, rgba(255, 216, 107, 0.2), transparent 70%);
+            top: -90px;
+            right: -40px;
+            pointer-events: none;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.26);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 12px;
+        }
+
+        .chip-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #65ff9b;
+            box-shadow: 0 0 12px #65ff9b;
+        }
+
+        h1 {
+            font-size: clamp(29px, 4.8vw, 38px);
+            line-height: 1.12;
+            margin-bottom: 10px;
+        }
+
+        .name-highlight {
+            background: linear-gradient(120deg, #ffb3e1, #ffe27b, #9dfcff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 14px rgba(0, 0, 0, 0.85);
+            white-space: nowrap;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 16px;
+        }
+
+        .subtitle span {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .btn-primary {
+            border: none;
+            outline: none;
+            padding: 10px 22px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #140818;
+            background: radial-gradient(circle at top left, #ffe27b, #ff9de1);
+            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.9);
+            transform: translateY(0);
+            transition:
+                transform 0.18s ease,
+                box-shadow 0.18s ease,
+                filter 0.18s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 20px 46px rgba(0, 0, 0, 0.95);
+            filter: brightness(1.07);
+        }
+
+        .btn-primary:active {
+            transform: translateY(1px) scale(0.99);
+            box-shadow: 0 8px 26px rgba(0, 0, 0, 1);
+        }
+
+        .btn-secondary {
+            border-radius: 999px;
+            padding: 9px 18px;
+            font-size: 12px;
+            text-transform: uppercase;
+            border: 1px dashed rgba(255, 255, 255, 0.5);
+            background: rgba(0, 0, 0, 0.55);
+            color: var(--accent-cyan);
+            cursor: default;
+            letter-spacing: 0.12em;
+        }
+
+        .tagline {
+            font-size: 12px;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .tagline code {
+            font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
+                Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 11px;
+            padding: 3px 7px;
+            border-radius: 999px;
+            border: 1px dashed rgba(255, 255, 255, 0.28);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .message-box {
+            margin-top: 8px;
+            padding: 14px 14px 10px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.82), rgba(18, 8, 43, 0.95));
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            position: relative;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.7s ease, opacity 0.7s ease;
+        }
+
+        .message-box.show {
+            max-height: 260px;
+            /* thoda zyada space */
+            opacity: 1;
+        }
+
+        .message-box::before {
+            content: "</>";
+            position: absolute;
+            font-size: 60px;
+            font-weight: 800;
+            right: -6px;
+            bottom: -20px;
+            opacity: 0.03;
+        }
+
+        .message-header {
+            font-size: 11px;
+            opacity: 0.65;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 6px;
+        }
+
+        .typewriter {
+            font-size: 15px;
+            /* 👉 text thoda bada */
+            line-height: 1.7;
+            white-space: pre-line;
+            min-height: 90px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            animation: blink 0.8s steps(1, end) infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .timeline {
+            margin-top: 14px;
+            border-left: 1px solid rgba(255, 255, 255, 0.22);
+            padding-left: 12px;
+            font-size: 11px;
+            display: grid;
+            gap: 6px;
+            opacity: 0.9;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 8px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -14px;
+            top: 4px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #fff, var(--accent-pink));
+            box-shadow: 0 0 8px rgba(255, 122, 196, 0.7);
+        }
+
+        .timeline-label {
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-size: 10px;
+            opacity: 0.7;
+        }
+
+        .timeline-text {
+            font-size: 11px;
+            opacity: 0.88;
+        }
+
+        .footer {
+            margin-top: 14px;
+            font-size: 11px;
+            opacity: 0.75;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .footer code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+                "Liberation Mono", "Courier New", monospace;
+            font-size: 11px;
+        }
+
+        .heart {
+            color: #ff8fb4;
+        }
+
+        /* RIGHT COLUMN */
+
+        .right-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-start;
+            gap: 18px;
+            position: relative;
+        }
+
+        @media (max-width: 840px) {
+            .right-col {
+                align-items: center;
+            }
+        }
+
+        .badge-floating {
+            padding: 7px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.32);
+            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), rgba(0, 0, 0, 0.7));
+            backdrop-filter: blur(14px);
+            font-size: 11px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            box-shadow: 0 16px 34px rgba(0, 0, 0, 0.9);
+            animation: floatY 4.6s ease-in-out infinite;
+            margin-top: 4px;
+        }
+
+        .badge-floating span.emoji {
+            font-size: 17px;
+        }
+
+        @keyframes floatY {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .side-note {
+            font-size: 11px;
+            opacity: 0.8;
+            text-align: center;
+            max-width: 260px;
+            line-height: 1.5;
+        }
+
+        .side-note span {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        /* 3D ROTATE GALLERY STYLES */
+
+        .right-3d-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: 46px;
+            margin-bottom: 6px;
+        }
+
+        #drag-container {
+            width: 340px;
+            height: 340px;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        #spin-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transform-origin: 50% 50%;
+        }
+
+        #spin-container img {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform-style: preserve-3d;
+            object-fit: cover;
+            border-radius: 18px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9);
+            border: 2px solid rgba(255, 255, 255, 0.35);
+            cursor: pointer;
+            background: #000;
+        }
+
+        #ground {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, 60%, -100px) rotateX(90deg);
+            transform-origin: 50% 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent 70%);
+            opacity: 0.35;
+            filter: blur(4px);
+            pointer-events: none;
+        }
+
+        @keyframes spinY {
+            from {
+                transform: rotateY(0deg);
+            }
+
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+
+        @media (max-width: 840px) {
+            #drag-container {
+                width: 290px;
+                height: 290px;
+            }
+        }
+
+        /* Lightbox */
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 1, 9, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease-out;
+            z-index: 5;
+            padding: 16px;
+        }
+
+        .lightbox.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-img {
+            max-width: min(540px, 100%);
+            max-height: 80vh;
+            border-radius: 26px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 22px 56px rgba(0, 0, 0, 1);
+            object-fit: cover;
+            animation: zoomIn 0.32s ease-out;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9) translateY(18px);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 16px;
+            right: 22px;
+            font-size: 28px;
+            cursor: pointer;
+            user-select: none;
+            line-height: 1;
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.06);
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="fireworks"></canvas>
+    <div class="stars"></div>
+    <div class="fairy-lights"></div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">✕</span>
+        <img src="" alt="Pranssi" class="lightbox-img" id="lightboxImg" />
+    </div>
+
+    <main>
+        <section class="shell" id="card">
+            <!-- LEFT -->
+            <div>
+                <div class="chip">
+                    <span class="chip-dot"></span>
+                    <span>Birthday Girl</span>
+                </div>
+
+                <h1>
+                    Happy Birthday,
+                    <span class="name-highlight">Pranssi 🎆</span>
+                </h1>
+
+                <p class="subtitle">
+                    Aaj ye din apke naam , aur
+                    <span>Wish toe me bhut logo ko kiya hu </span> app mere fst frnd ho toe thoda special tarike se wish krna chahata hu –
+                    text se nahi ek program bna ke wish karta hu..!💻✨
+                </p>
+
+                <div class="btn-row">
+                    <button class="btn-primary" id="launchBtn">
+                        pranssi click here and seen you today mini diwali ▶
+                    </button>
+                    <div class="btn-secondary">
+                        only for you (memories with pranssi photos)
+                    </div>
+                </div>
+
+                <div class="tagline">
+                    <span>Me apki kya hi tareef karu apko bataya tha me tareef word bna hi apse hai </span>
+                    <code>For instagram ID : @pranssikush, and Mahadev ki ladli</code>
+                </div>
+
+                <div class="message-box" id="messageBox">
+                    <div class="message-header">ONCE AGAIN - HAPPY BIRTHDAY PRANSSI</div>
+                    <div class="typewriter" id="typewriter"></div>
+                    <span class="cursor" id="cursor">|</span>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-label">01 • origin</div>
+                            <div class="timeline-text">
+                                Khne ko toe aaj normal sa din hai, par aap mile, aur tab se
+                                life bhut aachi ho gai maano ki mere code se error hi gyb ho gye ho.
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-label">02 • today</div>
+                            <div class="timeline-text">
+                                Aaj apka birthday hai – socha ki mini Diwali jaisa
+                                kush karu, jha pe sirf khusiya hi khusiya hoe.
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-label">03 • forever</div>
+                            <div class="timeline-text">
+                               if (wish == true) { life.happiness++; } — ship it, Pranssi.🎉♾️
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <div>
+                        <code>Made with <span class="heart">♥</span>Apka currently friend V.A</code>
+                    </div>
+                    <div>~For your Sasta engineer</div>
+                </div>
+            </div>
+
+            <div class="right-col">
+                <div class="badge-floating">
+                    <span class="emoji">🧨</span>
+                    <span>Special one: <strong> Birthday Girl 13 dec</strong></span>
+                </div>
+
+                <!-- 3D ROTATING GALLERY -->
+                <div class="right-3d-wrapper">
+                    <div id="drag-container">
+                        <div id="spin-container">
+                            <img src="pranssi1.jpg" alt="Pranssi 1" />
+                            <img src="pranssi2.jpg" alt="Pranssi 2" />
+                            <img src="pranssi3.jpg" alt="Pranssi 3" />
+                            <img src="pranssi4.jpg" alt="Pranssi 4" />
+                            <img src="pranssi1.jpg" alt="Pranssi 5" />
+                            <img src="pranssi2.jpg" alt="Pranssi 6" />
+                        </div>
+                        <div id="ground"></div>
+                    </div>
+                </div>
+
+                <div class="side-note">
+                    I WISH RADHA RANI APKI SAARI KWAHISH PURI KARE
+                    <span></span> 💛
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // ---------------------------
+        // 💬 Typewriter Message (short + cute)
+        // ---------------------------
+        const lines = [
+            "Hii Pranssi.........,",
+            "",
+            "Today is 13 December it's your birthday Pranssi💛",
+            "Iss birthday kyu nh kush special sa ho jaaye.......",
+            "Kyu nh iss baar mini diwali bna di jaaye apke liyee...",
+            "May Lord Mahadev fulfill all your wishes ✨",
+            "May your life never face sorrow....",
+            "Happy Birthday, Pranssi —",
+            "Stay happy always, and keep smiling and shining just like this.💛",
+            
+        ];
+
+        const typewriterEl = document.getElementById("typewriter");
+        const cursorEl = document.getElementById("cursor");
+        const messageBox = document.getElementById("messageBox");
+        const launchBtn = document.getElementById("launchBtn");
+
+        let lineIndex = 0;
+        let charIndex = 0;
+        let isTyping = false;
+
+        function typeNextChar() {
+            if (lineIndex >= lines.length) {
+                cursorEl.style.opacity = "0.4";
+                return;
+            }
+
+            if (charIndex === 0) {
+                typewriterEl.textContent += (lineIndex === 0 ? "" : "\n");
+            }
+
+            const currentLine = lines[lineIndex];
+
+            if (charIndex < currentLine.length) {
+                typewriterEl.textContent += currentLine.charAt(charIndex);
+                charIndex++;
+
+                const baseDelay = 30;
+                const pauseChars = [",", ".", "…", "!", "?"];
+                const extraPause = pauseChars.includes(currentLine.charAt(charIndex - 1))
+                    ? 220
+                    : 0;
+
+                setTimeout(typeNextChar, baseDelay + extraPause);
+            } else {
+                lineIndex++;
+                charIndex = 0;
+                setTimeout(typeNextChar, 320);
+            }
+        }
+
+        // ---------------------------
+        // 🧨 Fireworks (Canvas)
+        // ---------------------------
+        const canvas = document.getElementById("fireworks");
+        const ctx = canvas.getContext("2d");
+        let cw, ch;
+        let fireworks = [];
+        let particles = [];
+        let running = false;
+        let lastSpawn = 0;
+        let fireTimeout = null;
+
+        function resizeCanvas() {
+            cw = canvas.width = window.innerWidth;
+            ch = canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+
+        function random(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        const fireworkColors = [
+            "#ff9de1",
+            "#ffe27b",
+            "#7af2ff",
+            "#c4b5ff",
+            "#ff9f7b"
+        ];
+
+        class Firework {
+            constructor() {
+                this.x = random(cw * 0.1, cw * 0.9);
+                this.y = ch;
+                this.targetY = random(ch * 0.15, ch * 0.45);
+                this.speedY = random(8, 11);
+                this.color = fireworkColors[Math.floor(Math.random() * fireworkColors.length)];
+                this.trail = [];
+            }
+
+            update() {
+                this.trail.push({ x: this.x, y: this.y });
+                if (this.trail.length > 12) this.trail.shift();
+
+                this.y -= this.speedY;
+                this.speedY *= 0.97;
+
+                if (this.y <= this.targetY || this.speedY < 2) {
+                    this.explode();
+                    return false;
+                }
+                return true;
+            }
+
+            explode() {
+                const count = 45 + Math.floor(Math.random() * 40);
+                for (let i = 0; i < count; i++) {
+                    const angle = (Math.PI * 2 * i) / count;
+                    const speed = random(2.5, 5.2);
+                    particles.push(
+                        new Particle(
+                            this.x,
+                            this.y,
+                            Math.cos(angle) * speed,
+                            Math.sin(angle) * speed
+                        )
+                    );
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                for (let i = this.trail.length - 1; i >= 0; i--) {
+                    const p = this.trail[i];
+                    const alpha = i / this.trail.length;
+                    ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+                    if (i === this.trail.length - 1) {
+                        ctx.moveTo(p.x, p.y);
+                    } else {
+                        ctx.lineTo(p.x, p.y);
+                    }
+                }
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        class Particle {
+            constructor(x, y, vx, vy) {
+                this.x = x;
+                this.y = y;
+                this.vx = vx;
+                this.vy = vy;
+                this.alpha = 1;
+                this.size = random(2, 3.4);
+                this.color =
+                    fireworkColors[Math.floor(Math.random() * fireworkColors.length)];
+                this.decay = random(0.015, 0.03);
+                this.gravity = 0.08;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vy += this.gravity;
+                this.alpha -= this.decay;
+                return this.alpha > 0;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                const gradient = ctx.createRadialGradient(
+                    this.x,
+                    this.y,
+                    0,
+                    this.x,
+                    this.y,
+                    this.size * 3
+                );
+                gradient.addColorStop(0, "#ffffff");
+                gradient.addColorStop(0.2, this.color);
+                gradient.addColorStop(1, "rgba(0,0,0,0)");
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function animateFireworks(timestamp) {
+            if (!running) return;
+
+            requestAnimationFrame(animateFireworks);
+
+            ctx.fillStyle = "rgba(5, 2, 18, 0.25)";
+            ctx.fillRect(0, 0, cw, ch);
+
+            if (!lastSpawn) lastSpawn = timestamp;
+            const diff = timestamp - lastSpawn;
+            if (diff > 400) {
+                fireworks.push(new Firework());
+                lastSpawn = timestamp;
+            }
+
+            fireworks = fireworks.filter((fw) => {
+                const alive = fw.update();
+                fw.draw();
+                return alive;
+            });
+
+            particles = particles.filter((p) => {
+                const alive = p.update();
+                p.draw();
+                return alive;
+            });
+        }
+
+        // 👉 har click pe naya show
+        function startFireworks() {
+            running = true;
+            fireworks = [];
+            particles = [];
+            lastSpawn = 0;
+            if (fireTimeout) clearTimeout(fireTimeout);
+            requestAnimationFrame(animateFireworks);
+
+            fireTimeout = setTimeout(() => {
+                running = false;
+            }, 12000);
+        }
+
+        // ---------------------------
+        // 🖼️ Lightbox for 3D images
+        // ---------------------------
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightboxImg");
+        const lightboxClose = document.getElementById("lightboxClose");
+
+        const spinContainer = document.getElementById("spin-container");
+        spinContainer.addEventListener("click", (e) => {
+            const img = e.target.closest("img");
+            if (!img) return;
+            lightboxImg.src = img.src;
+            lightbox.classList.add("open");
+        });
+
+        lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox || e.target === lightboxClose) {
+                lightbox.classList.remove("open");
+            }
+        });
+
+        function revealPhotos() {
+            // 3D gallery already visible
+        }
+
+        // ---------------------------
+        // ✨ 3D tilt effect for card
+        // ---------------------------
+        const card = document.getElementById("card");
+
+        card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const rotateY = ((x - rect.width / 2) / rect.width) * 10;
+            const rotateX = -((y - rect.height / 2) / rect.height) * 10;
+            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        card.addEventListener("mouseleave", () => {
+            card.style.transform = "rotateX(0deg) rotateY(0deg)";
+        });
+
+        // ---------------------------
+        // 🚀 Launch Button
+        // ---------------------------
+        launchBtn.addEventListener("click", () => {
+            // message sirf pehli baar type hoga
+            if (!isTyping) {
+                isTyping = true;
+                messageBox.classList.add("show");
+                setTimeout(() => {
+                    typeNextChar();
+                }, 350);
+            }
+
+            // lekin fireworks har click pe
+            startFireworks();
+        });
+
+        // ---------------------------
+        // 🎡 3D ROTATE GALLERY JS
+        // ---------------------------
+        const radius = 210;
+        const autoRotate = true;
+        const rotateSpeed = 25;
+        const imgWidth = 130;
+        const imgHeight = 230;
+
+        const dragContainer = document.getElementById("drag-container");
+        const imgs = spinContainer.getElementsByTagName("img");
+        const ground = document.getElementById("ground");
+
+        spinContainer.style.width = imgWidth + "px";
+        spinContainer.style.height = imgHeight + "px";
+
+        ground.style.width = radius * 3 + "px";
+        ground.style.height = radius * 3 + "px";
+
+        function initImages() {
+            const total = imgs.length;
+            for (let i = 0; i < total; i++) {
+                const angle = (360 / total) * i;
+                imgs[i].style.width = imgWidth + "px";
+                imgs[i].style.height = imgHeight + "px";
+                imgs[i].style.marginTop = -(imgHeight / 2) + "px";
+                imgs[i].style.marginLeft = -(imgWidth / 2) + "px";
+                imgs[i].style.transform =
+                    "rotateY(" + angle + "deg) translateZ(" + radius + "px)";
+            }
+        }
+
+        initImages();
+
+        if (autoRotate) {
+            spinContainer.style.animation =
+                `spinY ${rotateSpeed}s linear infinite`;
+        }
+
+        let mouseDown = false;
+        let lastX, lastY;
+        let curX = 0;
+        let curY = 0;
+
+        function applyRotation() {
+            spinContainer.style.animation = "none";
+            spinContainer.style.transform =
+                `rotateX(${curX}deg) rotateY(${curY}deg)`;
+        }
+
+        document.addEventListener("mousedown", function (e) {
+            mouseDown = true;
+            lastX = e.clientX;
+            lastY = e.clientY;
+        });
+
+        document.addEventListener("mousemove", function (e) {
+            if (!mouseDown) return;
+            const dx = e.clientX - lastX;
+            const dy = e.clientY - lastY;
+            lastX = e.clientX;
+            lastY = e.clientY;
+
+            curY += dx * 0.2;
+            curX -= dy * 0.2;
+            applyRotation();
+        });
+
+        document.addEventListener("mouseup", function () {
+            mouseDown = false;
+            if (autoRotate) {
+                spinContainer.style.animation =
+                    `spinY ${rotateSpeed}s linear infinite`;
+            }
+        });
+
+        document.addEventListener("touchstart", function (e) {
+            if (e.touches.length !== 1) return;
+            mouseDown = true;
+            lastX = e.touches[0].clientX;
+            lastY = e.touches[0].clientY;
+        });
+
+        document.addEventListener("touchmove", function (e) {
+            if (!mouseDown || e.touches.length !== 1) return;
+            const touch = e.touches[0];
+            const dx = touch.clientX - lastX;
+            const dy = touch.clientY - lastY;
+            lastX = touch.clientX;
+            lastY = touch.clientY;
+
+            curY += dx * 0.2;
+            curX -= dy * 0.2;
+            applyRotation();
+        });
+
+        document.addEventListener("touchend", function () {
+            mouseDown = false;
+            if (autoRotate) {
+                spinContainer.style.animation =
+                    `spinY ${rotateSpeed}s linear infinite`;
+            }
+        });
+    </script>
+</body>
+
+</html>
