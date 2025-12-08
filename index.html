@@ -86,27 +86,15 @@
             }
         }
 
-        /* main {
-      position: relative;
-      z-index: 2;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 32px 14px 40px;
-    } */
         main {
             position: relative;
             z-index: 2;
             min-height: 100vh;
             display: flex;
             align-items: center;
-            /* 🔥 center se hata ke top ki taraf fix */
             justify-content: center;
             padding: 40px 14px 40px;
-            /* thoda upar se space */
         }
-
 
         .shell {
             max-width: 1080px;
@@ -280,7 +268,6 @@
 
         .message-box.show {
             max-height: 260px;
-            /* thoda zyada space */
             opacity: 1;
         }
 
@@ -304,7 +291,6 @@
 
         .typewriter {
             font-size: 15px;
-            /* 👉 text thoda bada */
             line-height: 1.7;
             white-space: pre-line;
             min-height: 90px;
@@ -381,8 +367,6 @@
             color: #ff8fb4;
         }
 
-        /* RIGHT COLUMN */
-
         .right-col {
             display: flex;
             flex-direction: column;
@@ -441,8 +425,6 @@
             color: var(--accent-cyan);
             font-weight: 600;
         }
-
-        /* 3D ROTATE GALLERY STYLES */
 
         .right-3d-wrapper {
             width: 100%;
@@ -510,8 +492,6 @@
             }
         }
 
-        /* Lightbox */
-
         .lightbox {
             position: fixed;
             inset: 0;
@@ -570,6 +550,11 @@
 </head>
 
 <body>
+    <!-- 🔊 Birthday song -->
+    <audio id="birthdayAudio" autoplay loop>
+        <source src="happy-birthday.mp3" type="audio/mpeg">
+    </audio>
+
     <canvas id="fireworks"></canvas>
     <div class="stars"></div>
     <div class="fairy-lights"></div>
@@ -582,7 +567,6 @@
 
     <main>
         <section class="shell" id="card">
-            <!-- LEFT -->
             <div>
                 <div class="chip">
                     <span class="chip-dot"></span>
@@ -596,8 +580,7 @@
 
                 <p class="subtitle">
                     Aaj ye din apke naam , aur
-                    <span>Wish toe me bhut logo ko kiya hu </span> app mere fst frnd ho toe thoda special tarike se wish krna chahata hu –
-                    text se nahi ek program bna ke wish karta hu..!💻✨
+                    <span>Wish toe me bhut logo ko kiya hu </span> app mere fst frnd ho toe thoda special tarike se wish krna chahata hu – text se nahi ek program bna ke wish karta hu..!💻✨
                 </p>
 
                 <div class="btn-row">
@@ -637,7 +620,7 @@
                         <div class="timeline-item">
                             <div class="timeline-label">03 • forever</div>
                             <div class="timeline-text">
-                               if (wish == true) { life.happiness++; } — ship it, Pranssi.🎉♾️
+                                if (wish == true) { life.happiness++; } — ship it, Pranssi.🎉♾️
                             </div>
                         </div>
                     </div>
@@ -657,16 +640,15 @@
                     <span>Special one: <strong> Birthday Girl 13 dec</strong></span>
                 </div>
 
-                <!-- 3D ROTATING GALLERY -->
                 <div class="right-3d-wrapper">
                     <div id="drag-container">
                         <div id="spin-container">
-                            <img src="pranssi/pranssi1.jpg" alt="Pranssi 1" />
-                            <img src="pranssi/pranssi2.jpg" alt="Pranssi 2" />
-                            <img src="pranssi/pranssi3.jpg" alt="Pranssi 3" />
-                            <img src="pranssi/pranssi4.jpg" alt="Pranssi 4" />
-                            <img src="pranssi/pranssi1.jpg" alt="Pranssi 5" />
-                            <img src="pranssi/pranssi2.jpg" alt="Pranssi 6" />
+                            <img src="pranssi1.jpg" alt="Pranssi 1" />
+                            <img src="pranssi2.jpg" alt="Pranssi 2" />
+                            <img src="pranssi3.jpg" alt="Pranssi 3" />
+                            <img src="pranssi4.jpg" alt="Pranssi 4" />
+                            <img src="pranssi1.jpg" alt="Pranssi 5" />
+                            <img src="pranssi2.jpg" alt="Pranssi 6" />
                         </div>
                         <div id="ground"></div>
                     </div>
@@ -681,8 +663,16 @@
     </main>
 
     <script>
+        // 🔊 Birthday song control
+        const birthdayAudio = document.getElementById("birthdayAudio");
+        document.addEventListener("click", () => {
+            if (birthdayAudio.paused) {
+                birthdayAudio.play().catch(() => { });
+            }
+        }, { once: true });
+
         // ---------------------------
-        // 💬 Typewriter Message (short + cute)
+        // 💬 Typewriter Message
         // ---------------------------
         const lines = [
             "Hii Pranssi.........,",
@@ -694,7 +684,6 @@
             "May your life never face sorrow....",
             "Happy Birthday, Pranssi —",
             "Stay happy always, and keep smiling and shining just like this.💛",
-            
         ];
 
         const typewriterEl = document.getElementById("typewriter");
@@ -736,9 +725,7 @@
             }
         }
 
-        // ---------------------------
-        // 🧨 Fireworks (Canvas)
-        // ---------------------------
+        // Fireworks code as before
         const canvas = document.getElementById("fireworks");
         const ctx = canvas.getContext("2d");
         let cw, ch;
@@ -901,7 +888,6 @@
             });
         }
 
-        // 👉 har click pe naya show
         function startFireworks() {
             running = true;
             fireworks = [];
@@ -915,9 +901,6 @@
             }, 12000);
         }
 
-        // ---------------------------
-        // 🖼️ Lightbox for 3D images
-        // ---------------------------
         const lightbox = document.getElementById("lightbox");
         const lightboxImg = document.getElementById("lightboxImg");
         const lightboxClose = document.getElementById("lightboxClose");
@@ -936,13 +919,6 @@
             }
         });
 
-        function revealPhotos() {
-            // 3D gallery already visible
-        }
-
-        // ---------------------------
-        // ✨ 3D tilt effect for card
-        // ---------------------------
         const card = document.getElementById("card");
 
         card.addEventListener("mousemove", (e) => {
@@ -958,11 +934,9 @@
             card.style.transform = "rotateX(0deg) rotateY(0deg)";
         });
 
-        // ---------------------------
-        // 🚀 Launch Button
-        // ---------------------------
         launchBtn.addEventListener("click", () => {
-            // message sirf pehli baar type hoga
+            birthdayAudio.play().catch(() => { });
+
             if (!isTyping) {
                 isTyping = true;
                 messageBox.classList.add("show");
@@ -971,13 +945,9 @@
                 }, 350);
             }
 
-            // lekin fireworks har click pe
             startFireworks();
         });
 
-        // ---------------------------
-        // 🎡 3D ROTATE GALLERY JS
-        // ---------------------------
         const radius = 210;
         const autoRotate = true;
         const rotateSpeed = 25;
@@ -1082,10 +1052,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
